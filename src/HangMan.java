@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
-
 //make the PrintStatements variables instead of whole classes.
 public class HangMan {
     // colors for guesses
