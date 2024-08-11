@@ -4,8 +4,23 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
-//make the PrintStatements variables instead of whole classes.
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 public class HangMan {
+    //database stuff
+    try {
+        Connection fiveLetterConnection = DriverManager.getConnection("jdbc:h2:/Users/malkdaboor/Desktop/HangManAttempt/res/fiveDB");
+        Statement fiveLetterStatement = fiveLetterConnection.createStatement();
+        ResultSet fiveLetterResultSet = fiveLetterStatement.executeQuery("SELECT * FROM fiveLetterWords");
+
+    }
+    catch (Exception e){
+        e.printStackTrace();
+    }
+
     // colors for guesses
     public static void main(String[] args) {
         String RESET = "\u001B[0m";
@@ -16,11 +31,11 @@ public class HangMan {
         Scanner in = new Scanner (System.in);
 
         // string variables
-        String choice = "Please make your choice:";
         String introduction = "Welcome! There are two ways of play: either play until you get the word right, or have a " +
                 "limited number (5) of tries. Which would you like to do? \n " +
                 "(u) unlimited tries \n " +
                 "(f) five tries \n";
+        String choice = "Please make your choice:";
         String guessLengthChoices = "Please indicate how long you want the word you guess to be: \n" +
                 " (4) letters long \n" +
                 " (5) letters long \n" +
@@ -38,8 +53,6 @@ public class HangMan {
         FourLetters four = new FourLetters();
         PrintStatements statement = new PrintStatements();
 
-
-
         boolean correct;
         boolean wordGuessed = false;
         ArrayList<Character> lettersGuessed = new ArrayList<>();
@@ -52,12 +65,12 @@ public class HangMan {
         int guessIndex;
         int sizeOfGuesses;
 
-        System.out.println(statement.getIntroduction());
+        System.out.println(introduction);
         System.out.println(choice);
         gameChoice = in.next();
         if(gameChoice.equals("u")){
             System.out.println("Game choice: unlimited tries");
-            System.out.println(statement.getGuesses());
+            System.out.println(guessLengthChoices);
             wordLength = in.nextInt();
             if(wordLength == 4) {
                 String randomWord = four.randomWordGenerator();
@@ -70,7 +83,7 @@ public class HangMan {
                         lettersGuessed.add(guessedChar);
                         numberOfGuesses++;
                     } else {
-                        System.out.println("You already guessed this");
+                        System.out.println(BLUE + "You already guessed this" + RESET);
                         continue;
                     }
                     System.out.println("Letters guessed so far: " + lettersGuessed);

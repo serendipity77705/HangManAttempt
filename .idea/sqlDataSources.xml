@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="38362cd9-b18b-4114-be25-8891a657efda" name="@localhost Mapping">
+      <data-sources db="40974a11-76bc-4f1b-bd37-17c258bd60f0" ddl="37ad51c3-19f7-4c96-90e9-eda224bdc0a3" />
+    </mapping>
+    <mapping uuid="97e2a68e-e9a5-4c97-8b5e-a231c7a6c982" name="fiveletters@localhost Mapping">
+      <data-sources db="2dd865ce-1158-4311-93e8-ecd7f48e9ad0" ddl="069091bc-8a55-45d1-b6ec-920a40b49b80" />
+    </mapping>
+  </component>
+</project>
