@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -10,19 +9,28 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 public class HangMan {
-    //database stuff
-    try {
-        Connection fiveLetterConnection = DriverManager.getConnection("jdbc:h2:/Users/malkdaboor/Desktop/HangManAttempt/res/fiveDB");
-        Statement fiveLetterStatement = fiveLetterConnection.createStatement();
-        ResultSet fiveLetterResultSet = fiveLetterStatement.executeQuery("SELECT * FROM fiveLetterWords");
-
-    }
-    catch (Exception e){
-        e.printStackTrace();
-    }
-
-    // colors for guesses
     public static void main(String[] args) {
+        //database stuff
+        try {
+            Connection fiveLetterConnection = DriverManager.getConnection("jdbc:h2:/Users/malkdaboor/Desktop/HangManAttempt/res/fiveDB", "", "");
+            Statement fiveLetterStatement = fiveLetterConnection.createStatement();
+            ResultSet fiveLetterResultSet = fiveLetterStatement.executeQuery("SELECT * FROM fiveLetterWords");
+
+            while (fiveLetterResultSet.next()) {
+                String word = fiveLetterResultSet.getString("word");
+                System.out.println(word);
+            }
+
+            // Closing resources
+            fiveLetterResultSet.close();
+            fiveLetterStatement.close();
+            fiveLetterConnection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // colors for guesses
         String RESET = "\u001B[0m";
         String RED = "\u001B[31m";
         String GREEN = "\u001B[32m";
